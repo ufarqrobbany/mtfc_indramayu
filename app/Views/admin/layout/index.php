@@ -26,6 +26,15 @@
     <link rel="stylesheet" href="<?= base_url(); ?>/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url(); ?>/plugins/summernote/summernote-bs4.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"> -->
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/plugins/codemirror/codemirror.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/plugins/codemirror/theme/monokai.css">
+    <!-- SimpleMDE -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/plugins/simplemde/simplemde.min.css">
+
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -74,6 +83,57 @@
     <script src="<?= base_url(); ?>/assets/admin/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url(); ?>/assets/admin/js/pages/dashboard.js"></script>
+    <script src="<?= base_url(); ?>/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script src="<?= base_url(); ?>/plugins/codemirror/codemirror.js"></script>
+    <script src="<?= base_url(); ?>/plugins/codemirror/mode/css/css.js"></script>
+    <script src="<?= base_url(); ?>/plugins/codemirror/mode/xml/xml.js"></script>
+    <script src="<?= base_url(); ?>/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+    <script>
+        var baseUrl = "<?= base_url(); ?>";
+        var siteUrl = "<?= site_url(); ?>";
+
+        $(function() {
+            bsCustomFileInput.init();
+            $('#summernote').summernote({
+                // callbacks: {
+                //     onImageUpload: function(files) {
+                //         for (let i = 0; i < files.length; i++) {
+                //             $.upload(files[i]);
+                //         }
+                //     },
+                //     onMediaDelete: function(target) {
+                //         $.delete(target[0].src);
+                //     }
+                // },
+                height: 500,
+                dialogsInBody: true,
+            });
+
+            // $.upload = function(file) {
+            //     let out = new FormData();
+            //     out.append('file', file, file.name);
+            //     $.ajax({
+            //         method: 'POST',
+            //         url: baseUrl + 'admin/berita/uploadGambar',
+            //         contentType: false,
+            //         cache: false,
+            //         processData: false,
+            //         data: out,
+            //         "<?= csrf_token() ?>": "<?= csrf_hash() ?>",
+            //         success: function(img) {
+            //             $('.summernote').summernote('insertImage', img);
+            //         },
+            //         error: function(jqXHR, textStatus, errorThrown) {
+            //             console.error(textStatus + " " + errorThrown);
+            //         }
+            //     });
+            // };
+        });
+    </script>
 </body>
 
 </html>

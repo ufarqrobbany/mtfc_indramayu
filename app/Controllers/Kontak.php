@@ -3,11 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\KontakModel;
+use App\Models\PesanModel;
 
 class Kontak extends BaseController
 {
     public function index()
     {
+        $kontakData = new KontakModel();
+        $data['kontak'] = $kontakData->first();
         $data['title'] = 'Kontak';
 
         return view('kontak', $data);
@@ -29,6 +32,8 @@ class Kontak extends BaseController
             );
         }
 
+        $pesanModel = new PesanModel();
+        $data['pesan_notif'] = $pesanModel->getDataBelumDilihat();
         $data['title'] = 'Kontak';
 
         return view('admin/kontak/index.php', $data);
@@ -37,6 +42,10 @@ class Kontak extends BaseController
     public function edit_kontak()
     {
         $data['title'] = 'Edit Kontak';
+        $kontak = new KontakModel();
+        $data['kontak'] = $kontak->first();
+        $pesanModel = new PesanModel();
+        $data['pesan_notif'] = $pesanModel->getDataBelumDilihat();
 
         return view('admin/kontak/edit_kontak.php', $data);
     }

@@ -11,7 +11,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/dashboard') ?>" class="nav-link <?= ($title == 'Dashboard') ? 'active' : '' ?>">
+                    <a href="<?= base_url('admin/dashboard') ?>" class="nav-link <?= ($title == 'Dashboard') ? 'active bg-danger' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -22,16 +22,16 @@
                 <!-- Upload -->
                 <li class="nav-header">Upload</li>
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/berita') ?>" class="nav-link">
-                        <i class="far nav-icon fa-newspaper"></i>
+                    <a href="<?= base_url('admin/berita/1') ?>" class="nav-link <?= ($title == 'Berita' || $title == 'Edit Berita' || $title == 'Tambah Berita') ? 'active bg-danger' : '' ?>">
+                        <i class="fas nav-icon fa-newspaper"></i>
                         <p>
                             Berita
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/galeri') ?>" class="nav-link">
-                        <i class="far fa-image nav-icon"></i>
+                    <a href="<?= base_url('admin/galeri/1') ?>" class="nav-link <?= ($title == 'Galeri' || $title == 'Edit Galeri' || $title == 'Tambah Galeri') ? 'active bg-danger' : '' ?>">
+                        <i class="fas fa-image nav-icon"></i>
                         <p>
                             Galeri
                         </p>
@@ -41,43 +41,28 @@
                 <!-- Pesan -->
                 <li class="nav-header">Pesan</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                    <a href="<?= base_url('admin/pesan/1') ?>" class="nav-link <?= ($title == 'Pesan' || $title == 'Lihat Pesan') ? 'active bg-danger' : '' ?>">
+                        <i class="nav-icon fas fa-envelope"></i>
                         <p>
-                            Pesan
+                            Kotak Masuk
                         </p>
+                        <?= count($pesan_notif) != 0 ? '<small class="bg-danger rounded-circle d-inline-block text-center" style="padding: 4px 10px; float: right;">' . count($pesan_notif) . '</small>' : ''; ?>
                     </a>
                 </li>
 
                 <!-- Kustom Web -->
-                <li class="nav-header">Kustomisasi Web</li>
+                <li class="nav-header">Data</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                    <a href="<?= base_url('/admin/tim/1') ?>" class="nav-link <?= ($title == 'Tim' || $title == 'Edit Anggota Tim' || $title == 'Tambah Anggota Tim' || $title == 'Sematkan Anggota Tim') ? 'active bg-danger' : '' ?>">
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Header
+                            Tim
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Tentang Kami
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Tim Kami
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('/admin/kontak') ?>" class="nav-link <?= ($title == 'Kontak' || $title == 'Edit Kontak') ? 'active' : '' ?>">
-                        <i class="nav-icon far fa-address-book"></i>
+                    <a href="<?= base_url('/admin/kontak') ?>" class="nav-link <?= ($title == 'Kontak' || $title == 'Edit Kontak') ? 'active bg-danger' : '' ?>">
+                        <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             Kontak
                         </p>

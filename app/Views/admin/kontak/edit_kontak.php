@@ -32,27 +32,27 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Telepon</label>
-                                <input type="text" name="telepon" class="form-control" placeholder="+62">
+                                <input type="text" name="telepon" class="form-control" placeholder="+62" value="<?= (isset($kontak->telepon)) ? $kontak->telepon : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="info@example.com">
+                                <input type="email" name="email" class="form-control" placeholder="info@example.com" value="<?= (isset($kontak->email)) ? $kontak->email : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label>Facebook Url</label>
-                                <input type="url" name="fb_url" class="form-control" placeholder="https://www.facebook.com/.....">
+                                <input type="url" name="fb_url" class="form-control" placeholder="https://www.facebook.com/....." value="<?= (isset($kontak->fb_url)) ? $kontak->fb_url : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label>Instagram Url</label>
-                                <input type="url" name="ig_url" class="form-control" placeholder="https://www.instagram.com/.....">
+                                <input type="url" name="ig_url" class="form-control" placeholder="https://www.instagram.com/....." value="<?= (isset($kontak->ig_url)) ? $kontak->ig_url : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label>Alamat Lengkap</label>
-                                <textarea name="alamat" class="form-control"></textarea>
+                                <textarea name="alamat" class="form-control"><?= (isset($kontak->alamat)) ? $kontak->alamat : '' ?>"</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Embed Link Google Map</label>
-                                <input type="url" name="embed_map" class="form-control" placeholder="https://www.google.com/maps/embed?.....">
+                                <input type="url" name="embed_map" class="form-control" placeholder="https://www.google.com/maps/embed?....." value="<?= (isset($kontak->embed_map)) ? $kontak->embed_map : '' ?>">
                             </div>
                         </div>
 

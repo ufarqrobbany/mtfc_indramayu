@@ -40,8 +40,13 @@ class Filters extends BaseConfig
                     'admin/login',
                     'admin/logout',
                     '/',
-                    '/galeri',
+                    '/tentang',
+                    '/tim/*',
+                    '/galeri/*',
+                    '/berita/*',
                     '/kontak',
+                    '/pesan/add',
+                    '/komentar/add',
                 ]
             ]
         ],
