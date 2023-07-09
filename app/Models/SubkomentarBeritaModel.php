@@ -10,20 +10,20 @@ class SubkomentarBeritaModel extends Model
     protected $primaryKey = "id_subkomentar";
     protected $returnType = "object";
     protected $useTimestamps = false;
-    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_komentar'];
+    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_komentar', 'id_berita'];
 
     public function getData()
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('berita')->orderBy("tgl_dibuat", "desc");
+        $builder = $db->table('subkomentar_berita')->orderBy("waktu", "asc");
         $query = $builder->get();
         return $query->getResult();
     }
 
-    public function getDataID($id)
+    public function getDataBerita($id)
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('subkomentar_berita')->select('*')->join('komentar_berita', 'komentar_berita.id_komentar = subkomentar_berita.id_komentar')->where('subkomentar_berita.id_komentar', $id)->orderBy("waktu", "asc");
+        $builder = $db->table('subkomentar_berita')->select('subkomentar_berita.*')->join('berita', 'berita.id_berita = subkomentar_berita.id_berita')->where('subkomentar_berita.id_berita', $id)->orderBy("waktu", "asc");
         $query = $builder->get();
         return $query->getResult();
     }

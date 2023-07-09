@@ -57,6 +57,7 @@ class Admin extends BaseController
         $galeriModel = new GaleriModel();
         $beritaModel = new BeritaModel();
         $komentarModel = new KomentarBeritaModel();
+        $subKomentarModel = new SubkomentarBeritaModel();
         $pesanModel = new PesanModel();
 
         $data['title'] = 'Dashboard';
@@ -65,6 +66,7 @@ class Admin extends BaseController
         $data['galeri'] = $galeriModel->getData();
         $data['berita'] = $beritaModel->getData();
         $data['komentar'] = $komentarModel->getData()->get()->getResult();
+        $data['subkomentar'] = $subKomentarModel->getData();
         $data['pesan'] = $pesanModel->getData();
         $data['pesan_notif'] = $pesanModel->getDataBelumDilihat();
 

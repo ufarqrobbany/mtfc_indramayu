@@ -52,6 +52,13 @@
             filter: brightness(50%);
         }
 
+        .komen_picture_admin {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-origin: content-box;
+        }
+
         body {
             margin-top: 107px;
         }

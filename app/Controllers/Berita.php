@@ -56,6 +56,7 @@ class Berita extends BaseController
         $id_berita = $data['berita'][0]->id_berita;
 
         $data['komentar_ini'] = $komentarModel->getDataID($id_berita);
+        $data['subkomentar'] = $subKomentarModel->getDataBerita($id_berita);
 
         return view('berita_view', $data);
     }

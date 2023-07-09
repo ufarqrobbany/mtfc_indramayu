@@ -48,6 +48,7 @@ class Komentar extends BaseController
             'komentar' => $this->request->getPost('komentar'),
             'waktu' => $now,
             'id_komentar' => $this->request->getPost('id_komentar'),
+            'id_berita' => $this->request->getPost('id_berita'),
         ]);
 
         session()->setFlashdata('success', 'Berhasil menambahkan komentar');

@@ -47,6 +47,7 @@ class Filters extends BaseConfig
                     '/kontak',
                     '/pesan/add',
                     '/komentar/add',
+                    '/subkomentar/add',
                 ]
             ]
         ],

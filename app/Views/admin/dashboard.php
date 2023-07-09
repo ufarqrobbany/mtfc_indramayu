@@ -80,7 +80,7 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3><?= ($komentar) ? count($komentar) : '0' ?></h3>
+                        <h3><?= ($komentar) ? count($komentar) + count($subkomentar) : '0' ?></h3>
 
                         <p>Komentar</p>
                     </div>

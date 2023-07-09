@@ -217,7 +217,8 @@ function tgl_indo($tanggal)
                         <i class="fas fa-eye text-secondary me-2"></i><?= count($view->where('view_berita.id_berita', $berita[0]->id_berita)->get()->getResult()) ?>
                     </div>
                     <div>
-                        <i class="fas fa-comment text-secondary me-2"></i><?= count($komentar->where('komentar_berita.id_berita', $berita[0]->id_berita)->get()->getResult()) ?>
+                        <i class="fas fa-comment text-secondary me-2"></i>
+                        <?= count($komentar->where('komentar_berita.id_berita', $berita[0]->id_berita)->get()->getResult()) + count($subkomentar) ?>
                     </div>
                 </div>
             </div>
@@ -241,7 +242,7 @@ function tgl_indo($tanggal)
                                 </div>
                                 <div class="card-body p-0 d-flex flex-column justify-content-between">
                                     <div class="fw-semibold judul_berita_lainnya"><?= isset($berita_lainnya[$x]->judul) ? $berita_lainnya[$x]->judul : '-'; ?></div>
-                                    <small class="d-flex justify-content-between berita_lainnya_info">
+                                    <small class="d-flex justify-content-between berita_lainnya_info flex-wrap">
                                         <div>
                                             <i class="fas fa-calendar text-secondary me-1"></i>
                                             <span><?= isset($berita_lainnya[$x]->tgl_diupdate) ? tgl_indo($berita_lainnya[$x]->tgl_diupdate) : '-'; ?></span>
@@ -251,7 +252,8 @@ function tgl_indo($tanggal)
                                                 <i class="fas fa-eye text-secondary me-1"></i><?= count($view->where('view_berita.id_berita', $berita_lainnya[$x]->id_berita)->get()->getResult()) ?>
                                             </div>
                                             <div>
-                                                <i class="fas fa-comment text-secondary me-1"></i><?= count($komentar->where('komentar_berita.id_berita', $berita_lainnya[$x]->id_berita)->get()->getResult()) ?>
+                                                <i class="fas fa-comment text-secondary me-1"></i>
+                                                <?= count($komentar->where('komentar_berita.id_berita', $berita_lainnya[$x]->id_berita)->get()->getResult()) + count($subkomentar) ?>
                                             </div>
                                         </div>
                                     </small>
@@ -295,15 +297,18 @@ function tgl_indo($tanggal)
                             <div class="flex-shrink-0" style="width: 8%;">
                                 <?php
                                 if ($komentar_ini[$x]->foto != NULL) {
-                                    echo '<div class="rounded-circle bg-danger" style="width: 100%; aspect-ratio: 1/1;"></div>';
+                                    echo '<div class="rounded-circle bg-light komen_picture_admin p-1" style="width: 100%; aspect-ratio: 1/1; background-image: url(\'' . base_url('assets/logo_t.png') . '\')"></div>';
                                 } else {
                                     echo '<div class="rounded-circle bg-secondary d-flex justify-content-center align-items-end overflow-hidden fs-1" style="width: 100%; aspect-ratio: 1/1;"><i class="fas fa-user text-light"></i></div>';
                                 }
                                 ?>
                             </div>
                             <div class="flex-grow-1 d-flex flex-column row-gap-1">
-                                <div class="d-flex flex-row justify-content-between">
-                                    <div class="fw-semibold"><?= $komentar_ini[$x]->nama ?></div>
+                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <div class="fw-semibold">
+                                        <?= $komentar_ini[$x]->nama ?>
+                                        <?= ($komentar_ini[$x]->foto != NULL) ? '<span class="bg-danger text-white rounded px-2 py-1 d-inline-block ms-2" style="font-size: .7rem">admin</span>' : '' ?>
+                                    </div>
                                     <small style="opacity: .8;"><?= $komentar_ini[$x]->waktu ?></small>
                                 </div>
                                 <div style="font-size: .95rem"><?= $komentar_ini[$x]->komentar ?></div>
@@ -324,15 +329,18 @@ function tgl_indo($tanggal)
                                         <div class="flex-shrink-0" style="width: 8%;">
                                             <?php
                                             if ($s->foto != NULL) {
-                                                echo '<div class="rounded-circle bg-danger" style="width: 100%; aspect-ratio: 1/1;"></div>';
+                                                echo '<div class="rounded-circle bg-light komen_picture_admin p-1" style="width: 100%; aspect-ratio: 1/1; background-image: url(\'' . base_url('assets/logo_t.png') . '\')"></div>';
                                             } else {
                                                 echo '<div class="rounded-circle bg-secondary d-flex justify-content-center align-items-end overflow-hidden fs-2" style="width: 100%; aspect-ratio: 1/1;"><i class="fas fa-user text-light"></i></div>';
                                             }
                                             ?>
                                         </div>
                                         <div class="flex-grow-1 d-flex flex-column row-gap-1">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <div class="fw-semibold" style="font-size: .95rem"><?= $s->nama; ?></div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                                <div class="fw-semibold" style="font-size: .95rem">
+                                                    <?= $s->nama; ?>
+                                                    <?= ($s->foto != NULL) ? '<span class="bg-danger text-white rounded px-2 py-1 d-inline-block ms-2" style="font-size: .6rem">admin</span>' : '' ?>
+                                                </div>
                                                 <small style="opacity: .8; font-size: .8rem"><?= $s->waktu; ?></small>
                                             </div>
                                             <div style="font-size: .85rem"><?= $s->komentar; ?></div>
@@ -382,6 +390,7 @@ function tgl_indo($tanggal)
                         <small>Balas komentar <?= $komentar_ini[$x]->nama ?></small>
                         <?= csrf_field() ?>
                         <input type="hidden" name="id_komentar" value="<?= $komentar_ini[$x]->id_komentar ?>" />
+                        <input type="hidden" name="id_berita" value="<?= $berita[0]->id_berita ?>" />
                         <div>
                             <label for="nama" class="form-label">Nama : </label>
                             <input type="text" class="form-control" id="nama" name="nama" required>

@@ -162,7 +162,13 @@ function tgl_indo($tanggal)
                                             <i class="fas fa-eye text-secondary me-1"></i><?= count($view->where('view_berita.id_berita', $berita[$x]->id_berita)->get()->getResult()) ?>
                                         </div>
                                         <div>
-                                            <i class="fas fa-comment text-secondary me-1"></i><?= count($komentar->where('komentar_berita.id_berita', $berita[$x]->id_berita)->get()->getResult()) ?>
+                                            <?php
+                                            $db      = \Config\Database::connect();
+                                            $builder = $db->table('subkomentar_berita')->select('subkomentar_berita.*')->join('berita', 'berita.id_berita = subkomentar_berita.id_berita')->where('subkomentar_berita.id_berita', $berita[$x]->id_berita)->orderBy("waktu", "asc");
+                                            $subkomen = $builder->get()->getResult();
+                                            ?>
+                                            <i class="fas fa-comment text-secondary me-1"></i>
+                                            <?= count($komentar->where('komentar_berita.id_berita', $berita[$x]->id_berita)->get()->getResult()) + count($subkomen) ?>
                                         </div>
                                     </div>
                                 </small>
