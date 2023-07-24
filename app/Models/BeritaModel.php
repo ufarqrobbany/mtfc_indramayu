@@ -28,6 +28,14 @@ class BeritaModel extends Model
         return $query->getResult();
     }
 
+    public function getDataByID($id)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('berita')->where('id_berita', $id);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     public function deleteData()
     {
         $db      = \Config\Database::connect();

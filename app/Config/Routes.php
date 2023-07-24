@@ -30,6 +30,10 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/coba', 'Home::coba');
+$routes->post('/coba_por', 'Home::coba_process');
+$routes->post('/coba_por_2', 'Home::coba_process_2');
+$routes->post('/coba_por_3', 'Home::coba_process_3');
 
 $routes->get('/berita/(:num)', 'Berita::index/$1');
 $routes->get('/berita/view/(:any)/(:num)', 'Berita::view_berita/$1/$2');
@@ -54,9 +58,11 @@ $routes->get('/admin/berita/hapus_semua', 'Berita::hapus_semua_berita');
 $routes->get('/admin/komentar/(:num)', 'Komentar::index/$1');
 $routes->post('komentar/add', 'Komentar::add_komentar');
 $routes->post('subkomentar/add', 'Komentar::add_subkomentar');
-$routes->get('admin/pesan/view/(:num)', 'Pesan::view_pesan/$1');
-$routes->get('/admin/pesan/hapus/(:num)', 'Pesan::hapus_pesan/$1');
-$routes->get('/admin/pesan/hapus_semua', 'Pesan::hapus_semua_pesan');
+$routes->get('/admin/komentar/hapus/(:num)', 'Komentar::hapus_komentar/$1');
+$routes->get('/admin/komentar/hapus_ini/(:num)', 'Komentar::hapus_komentar_ini/$1');
+$routes->get('/admin/komentar/hapus_ini_sub/(:num)', 'Komentar::hapus_subkomentar_ini/$1');
+$routes->get('/admin/komentar/lihat/(:num)/(:num)', 'Komentar::lihat/$1/$2');
+$routes->get('/admin/komentar/lihat_balasan/(:num)', 'Komentar::lihat_balasan/$1');
 
 $routes->get('/admin/galeri/(:num)', 'Galeri::admin_galeri/$1');
 $routes->get('/admin/galeri/tambah', 'Galeri::tambah_galeri');
@@ -86,6 +92,11 @@ $routes->get('/admin/kontak', 'Kontak::admin_kontak');
 $routes->get('/admin/kontak/edit', 'Kontak::edit_kontak');
 $routes->post('/admin/kontak/save', 'Kontak::save_kontak');
 $routes->get('/admin/kontak/hapus', 'Kontak::hapus_kontak');
+
+$routes->get('/admin/tentang', 'Tentang::admin_tentang');
+$routes->get('/admin/tentang/edit', 'Tentang::edit_tentang');
+$routes->post('/admin/tentang/save', 'Tentang::save_tentang');
+$routes->get('/admin/tentang/hapus', 'Tentang::hapus_tentang');
 
 /*
  * --------------------------------------------------------------------

@@ -49,9 +49,33 @@
                         <?= count($pesan_notif) != 0 ? '<small class="bg-danger rounded-circle d-inline-block text-center" style="padding: 4px 10px; float: right;">' . count($pesan_notif) . '</small>' : ''; ?>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/komentar/1') ?>" class="nav-link <?= ($title == 'Komentar' || $title == 'Lihat Komentar') ? 'active bg-danger' : '' ?>">
+                        <i class="nav-icon fas fa-comment"></i>
+                        <p>
+                            Komentar
+                        </p>
+                        <?php
+                        $db      = \Config\Database::connect();
+                        $kom_lihat = $db->table('komentar_berita')->select('*')->join('berita', 'berita.id_berita = komentar_berita.id_berita')->where('komentar_berita.dilihat', 0)->orderBy("waktu", "desc");
+                        $subkom_lihat = $db->table('subkomentar_berita')->select('subkomentar_berita.*')->join('berita', 'berita.id_berita = subkomentar_berita.id_berita')->where('subkomentar_berita.dilihat', 0)->orderBy("waktu", "asc");
+                        $jml_komentar_lihat = $kom_lihat->get()->getResult();
+                        $jml_subkomentar_lihat = $subkom_lihat->get()->getResult();
+                        ?>
+                        <?= (count($jml_komentar_lihat) + count($jml_subkomentar_lihat)) != 0 ? '<small class="bg-danger rounded-circle d-inline-block text-center" style="padding: 4px 10px; float: right;">' . (count($jml_komentar_lihat) + count($jml_subkomentar_lihat)) . '</small>' : ''; ?>
+                    </a>
+                </li>
 
                 <!-- Kustom Web -->
                 <li class="nav-header">Data</li>
+                <li class="nav-item">
+                    <a href="<?= base_url('/admin/tentang') ?>" class="nav-link <?= ($title == 'Tentang' || $title == 'Edit Tentang') ? 'active bg-danger' : '' ?>">
+                        <i class="nav-icon fas fa-info-circle"></i>
+                        <p>
+                            Tentang
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="<?= base_url('/admin/tim/1') ?>" class="nav-link <?= ($title == 'Tim' || $title == 'Edit Anggota Tim' || $title == 'Tambah Anggota Tim' || $title == 'Sematkan Anggota Tim') ? 'active bg-danger' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>

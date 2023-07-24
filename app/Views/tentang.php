@@ -97,7 +97,11 @@
     <div class="mb-5">
         <h1 class="text-center">Tentang Kami</h1>
         <p class="text-center tentang_text mx-auto mt-4" style="opacity:0.8;">
-            Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.
+            <?php
+            $db      = \Config\Database::connect();
+            $tentangData = $db->table('tentang')->get()->getFirstRow();
+            ?>
+            <?= (isset($tentangData) && ($tentangData->tentang != NULL)) ? $tentangData->tentang : 'Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.' ?>
         </p>
         <img src="<?= base_url('assets/logo_t.png') ?>" class="mx-auto d-block logo_tentang" />
     </div>

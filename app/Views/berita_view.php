@@ -145,6 +145,24 @@ function tgl_indo($tanggal)
         margin-top: 16px;
     }
 
+    .tambah_komentar {
+        width: 50%;
+    }
+
+    .komentar_ini {
+        width: 50%;
+    }
+
+    .komentar_ke {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .komentar_foto,
+    .subkomentar_foto {
+        width: 8%;
+    }
+
     @media only screen and (max-width: 991px) {
         .thumb_image {
             position: absolute;
@@ -198,6 +216,27 @@ function tgl_indo($tanggal)
             margin-top: 0;
             flex-direction: column;
             row-gap: 4px;
+        }
+
+        .tambah_komentar {
+            width: 100%;
+        }
+
+        .komentar_ini {
+            width: 100%;
+        }
+
+        .komentar_ke {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .komentar_foto {
+            width: 10%;
+        }
+
+        .subkomentar_foto {
+            width: 12%;
         }
     }
 </style>
@@ -271,7 +310,7 @@ function tgl_indo($tanggal)
     <div class="mb-5">
         <div class="fw-semibold fs-4 text-center"><i class="fas fa-comment text-danger me-1" id="komentar"></i> Komentar</div>
 
-        <div class="w-50 mx-auto mt-5">
+        <div class="tambah_komentar mx-auto mt-5">
             <form action="<?= base_url('komentar/add') ?>" method="post" class="d-flex flex-column row-gap-3">
                 <?= csrf_field() ?>
                 <input type="hidden" name="id_berita" value="<?= $berita[0]->id_berita ?>" />
@@ -287,14 +326,14 @@ function tgl_indo($tanggal)
             </form>
         </div>
 
-        <div class="w-50 mt-5 mx-auto">
+        <div class="komentar_ini mt-5 mx-auto">
             <?php $awal = ($index == 1) ? 0 : ($index * 5) - 5; ?>
             <?php $akhir = ($index == 1) ? 4 : ($index * 5) - 5 + 4; ?>
             <?php for ($x = $awal; $x <= $akhir; $x++) : ?>
                 <?php if (isset($komentar_ini[$x])) : ?>
-                    <div class="w-100 py-2 px-4 mb-3 border-bottom">
+                    <div class="w-100 py-2 komentar_ke mb-3 border-bottom">
                         <div class="d-flex column-gap-3 align-items-start">
-                            <div class="flex-shrink-0" style="width: 8%;">
+                            <div class="flex-shrink-0 komentar_foto">
                                 <?php
                                 if ($komentar_ini[$x]->foto != NULL) {
                                     echo '<div class="rounded-circle bg-light komen_picture_admin p-1" style="width: 100%; aspect-ratio: 1/1; background-image: url(\'' . base_url('assets/logo_t.png') . '\')"></div>';
@@ -326,7 +365,7 @@ function tgl_indo($tanggal)
                             <div class="d-flex flex-column align-items-end my-2 w-100">
                                 <?php foreach ($subkomen as $s) : ?>
                                     <div style="width: 90%;" class="d-flex column-gap-3 align-items-start <?= $counSub == count($subkomen) ? '' : 'border-bottom' ?> px-4 py-3">
-                                        <div class="flex-shrink-0" style="width: 8%;">
+                                        <div class="flex-shrink-0 subkomentar_foto">
                                             <?php
                                             if ($s->foto != NULL) {
                                                 echo '<div class="rounded-circle bg-light komen_picture_admin p-1" style="width: 100%; aspect-ratio: 1/1; background-image: url(\'' . base_url('assets/logo_t.png') . '\')"></div>';

@@ -10,12 +10,12 @@ class KomentarBeritaModel extends Model
     protected $primaryKey = "id_komentar";
     protected $returnType = "object";
     protected $useTimestamps = false;
-    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_berita'];
+    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_berita', 'dilihat'];
 
     public function getData()
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('komentar_berita')->select('*')->join('berita', 'berita.id_berita = komentar_berita.id_berita');
+        $builder = $db->table('komentar_berita')->select('*')->join('berita', 'berita.id_berita = komentar_berita.id_berita')->orderBy("waktu", "desc");
         // $query = $builder->get();
         // return $query->getResult();
         return $builder;
@@ -29,13 +29,19 @@ class KomentarBeritaModel extends Model
         return $query->getResult();
     }
 
-    public function deleteData()
+    public function getDataIDKomen($id)
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('berita');
-        $db->table('komentar_berita')->emptyTable();
-        $db->table('subkomentar_berita')->emptyTable();
-        $db->table('view_berita')->emptyTable();
-        $builder->emptyTable();
+        $builder = $db->table('komentar_berita')->select('*')->join('berita', 'berita.id_berita = komentar_berita.id_berita')->where('komentar_berita.id_komentar', $id)->orderBy("waktu", "desc");
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function deleteDataByKomen($id)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('komentar_berita')->where('komentar_berita.id_berita', $id);
+        $db->table('subkomentar_berita')->where('subkomentar_berita.id_berita', $id)->delete();
+        $builder->delete();
     }
 }

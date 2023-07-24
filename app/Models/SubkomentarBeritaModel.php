@@ -10,7 +10,7 @@ class SubkomentarBeritaModel extends Model
     protected $primaryKey = "id_subkomentar";
     protected $returnType = "object";
     protected $useTimestamps = false;
-    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_komentar', 'id_berita'];
+    protected $allowedFields = ['nama', 'foto', 'komentar', 'waktu', 'id_komentar', 'id_berita', 'dilihat'];
 
     public function getData()
     {
@@ -28,7 +28,15 @@ class SubkomentarBeritaModel extends Model
         return $query->getResult();
     }
 
-    public function deleteData()
+    public function getDataKomen($id)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('subkomentar_berita')->select('subkomentar_berita.*')->join('komentar_berita', 'komentar_berita.id_komentar = subkomentar_berita.id_komentar')->where('subkomentar_berita.id_komentar', $id)->orderBy("waktu", "asc");
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function deleteDataBerita()
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('berita');

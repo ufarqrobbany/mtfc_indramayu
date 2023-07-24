@@ -31,7 +31,11 @@
         <div class="col-lg-6 col-12 d-flex row gap-3">
             <div class="fw-semibold fs-3 text-danger">Mangoes Taekwondo Fans Club</div>
             <div class="text-light footer_info">
-                Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada
+                <?php
+                $db      = \Config\Database::connect();
+                $tentang = $db->table('tentang')->get()->getFirstRow();
+                ?>
+                <?= (isset($tentang) && ($tentang->footer != NULL)) ? $tentang->footer : 'Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada' ?>
             </div>
             <ul class="list-unstyled d-flex mt-2">
                 <?php
